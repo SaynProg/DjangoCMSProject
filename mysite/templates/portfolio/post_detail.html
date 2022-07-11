@@ -1,0 +1,46 @@
+{% extends "djangocms_blog/base.html" %}
+{% load i18n easy_thumbnails_tags cms_tags menu_tags %}
+
+{% block canonical_url %}<link rel="canonical" href="{{ meta.url }}"/>{% endblock canonical_url %}
+{% block title %}{{ post.get_title }}{% endblock %}
+
+{% block content_blog %}{% spaceless %}
+<br><br><br>
+<section id="portfolio-details" class="portfolio-details">
+    <div class="container">
+        <div class="row gy-4">
+            
+            <div class="col-lg-8">
+                <div class="portfolio-details-slider swiper">
+                    <div class="swiper-wrapper align-items-center">
+
+                        <div class="swiper-slide">
+                            {% if not post.main_image_id %}
+                                <div class="blog-visual">{% render_placeholder post.media %}</div>
+                            {% else %}
+                            <div class="blog-visual">
+                                {% thumbnail post.main_image post.full_image_options.size crop=post.full_image_options.crop upscale=post.full_image_options.upscale subject_location=post.main_image.subject_location  as thumb %}
+                                <img src="{{ thumb.url }}" alt="{{ post.main_image.default_alt_text }}" width="{{ thumb.width }}" height="{{ thumb.height }}" class="img-fluid" />
+                            </div>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="portfolio-info">
+                    <h3>Про Проэкт</h3>
+                    {% if post.app_config.use_placeholder %}
+                        <div class="entry-content">{% render_placeholder post.content %}</div>
+                    {% else %}
+                        <div class="entry-content">{% render_model post "post_text" "post_text" "" "safe" %}</div>
+                    {% endif %}
+                </div>
+            </div>
+            <a href="\portfolio\">Назад</a>
+        </div>
+    </div>
+</section><!-- End Blog Single Section -->
+{% endspaceless %}{% endblock content_blog %}

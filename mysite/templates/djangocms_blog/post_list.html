@@ -1,0 +1,71 @@
+{% extends "djangocms_blog/base.html" %}
+{% load i18n easy_thumbnails_tags menu_tags %}{% spaceless %}
+
+{% block canonical_url %}<link rel="canonical" href="{{ view.get_view_url }}"/>{% endblock canonical_url %}
+
+{% block content_blog %}
+<br>
+<br>
+<br>
+<!-- ======= Breadcrumbs ======= -->
+<section id="breadcrumbs" class="breadcrumbs">
+    <div class="breadcrumb-hero">
+        <div class="container">
+            <div class="breadcrumb-hero">
+                <h2>{% trans "Блог" %}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <ol>
+            {% show_breadcrumb %}
+        </ol>
+    </div>
+</section><!-- End Breadcrumbs -->
+<section id="blog" class="blog">
+    {% block blog_title %}
+    <header>
+        <h2 class="text-center">
+        {% if author %}{% trans "Стаття написана" %} {{ author.get_full_name }}
+        {% elif archive_date %}{% trans "Архів" %} &ndash; {% if month %}{{ archive_date|date:'F' }} {% endif %}{{ year }}
+        {% elif tagged_entries %}{% trans "Тег" %} &ndash; {{ tagged_entries|capfirst }}
+        {% elif category %}{% trans "Категорія" %} &ndash; {{ category }}{% endif %}
+        </h2>
+    </header>
+    {% endblock %}
+    <div class="container" data-aos="fade-up">
+        <div class="row">
+            <div class="col-lg-10 entries mx-auto">
+                {% for post in post_list %}
+                    {% include "djangocms_blog/includes/blog_item.html" with post=post image="true" TRUNCWORDS_COUNT=TRUNCWORDS_COUNT %}
+                {% empty %}
+                <p class="blog-empty">{% trans "Жодна стаття не знайдена." %}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="blog-pagination">
+        <ul class="justify-content-center">
+            {% if author or archive_date or tagged_entries %}
+            <p class="blog-back"><a href="{% url 'djangocms_blog:posts-latest' %}"><li>{% trans "назад" %}</a></li></p>
+            {% endif %}
+            {% if is_paginated %}
+            <nav class="{% firstof css_grid instance.css_grid %} pagination">
+                {% if page_obj.has_previous %}
+                    <li><a href="?{{ view.page_kwarg }}={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a></li>
+                {% endif %}
+                <span class="current">
+                   <li class="active"><a href="#">{{ page_obj.number }}</a></li>
+                </span>
+                {% if page_obj.has_next %}
+                    <li><a href="?{{ view.page_kwarg }}={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a></li>
+                {% endif %}
+            </nav>
+            {% endif %}
+        </ul>
+    </div>
+
+</section>
+
+{% endblock %}
+{% endspaceless %}

@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load cms_tags static %}
+
+{% block title %}{% page_attribute "page_title" %}{% endblock title %}
+
+{% block content %}
+  
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="breadcrumb-hero">
+        <div class="container">
+          <div class="breadcrumb-hero">
+            {% placeholder "hero" %}
+          </div>
+        </div>
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-lg-6 pt-3 pt-lg-0 content">
+            {% placeholder "content" %}
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= Work Process Section ======= -->
+    <section id="work-process" class="work-process">
+      <div class="container">
+
+        <div class="section-title" data-aos="fade-up">
+          {% placeholder "workproceesstitle" %}
+        </div>
+
+        <div class="row content">
+          <div class="col-md-5" data-aos="fade-right">
+            <img src="{% static 'assets/img/work-process-1.png' %}" class="img-fluid" alt="">
+          </div>
+          <div class="col-md-7 pt-4" data-aos="fade-left">
+            {% placeholder "wprocess1" %}
+          </div>
+        </div>
+
+        <div class="row content">
+          <div class="col-md-5 order-1 order-md-2" data-aos="fade-left">
+            <img src="{% static 'assets/img/work-process-2.png' %}" class="img-fluid" alt="">
+          </div>
+          <div class="col-md-7 pt-5 order-2 order-md-1" data-aos="fade-right">
+            {% placeholder "wprocess2" %}
+          </div>
+        </div>
+
+        <div class="row content">
+          <div class="col-md-5" data-aos="fade-right">
+            <img src="{% static 'assets/img/work-process-3.png' %}" class="img-fluid" alt="">
+          </div>
+          <div class="col-md-7 pt-5" data-aos="fade-left">
+            {% placeholder "wprocess3" %}
+          </div>
+        </div>
+
+        <div class="row content">
+          <div class="col-md-5 order-1 order-md-2" data-aos="fade-left">
+            <img src="{% static 'assets/img/work-process-4.png' %}" class="img-fluid" alt="">
+          </div>
+          <div class="col-md-7 pt-5 order-2 order-md-1" data-aos="fade-right">
+            {% placeholder "wprocess4" %}
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Work Process Section -->
+
+  </main><!-- End #main -->
+
+{% endblock content %}

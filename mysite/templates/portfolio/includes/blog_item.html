@@ -1,0 +1,36 @@
+{% load djangocms_blog i18n easy_thumbnails_tags cms_tags %}
+
+<div class="col-lg-4 col-md-6 portfolio-item filter-app" style="margin: 2vh 1vw;">
+
+    <div class="portfolio-wrap">
+        <div class="entry-img">
+            {% if image and post.main_image %}
+            <div class="blog-visual">
+                {% thumbnail post.main_image post.thumbnail_options.size crop=post.thumbnail_options.crop upscale=post.thumbnail_options.upscale subject_location=post.main_image.subject_location as thumb %}
+                <img src="{{ thumb.url }}" alt="{{ post.main_image.default_alt_text }}" class="img-fluid" />
+            </div>
+            {% else %}
+                {% media_images post as previews %}
+                <div class="blog-visual">
+                  {% for preview in previews %}<img src="{{ preview }}" class="img-fluid"/>{% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="portfolio-info">
+            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+
+            <div class="blog-lead">
+                {% if not TRUNCWORDS_COUNT %}
+                    {% render_model post "abstract" "" "" "safe" %}
+                {% else %}
+                    {% render_model post "abstract" "" "" "truncatewords_html:TRUNCWORDS_COUNT|safe"  %}
+                {% endif %}
+            </div>
+
+            <div class="portfolio-links">
+                <a href="{{ post.get_absolute_url }}" title="Деталі роботи"><i class="bx bx-link"></i></a>
+            </div>
+        </div>
+    </div>
+</div> <br>
