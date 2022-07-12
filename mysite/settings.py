@@ -28,7 +28,7 @@ SECRET_KEY = 'pj2m3157=2m7yh+wt#wd8ol5$!%)_u$eb#k+0i-!av4)uasr00'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['saynsite.pythonanywhere.com',]
 
 
 # Application definition
@@ -88,11 +88,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(DATA_DIR, 'media')
-STATIC_ROOT = os.path.join(DATA_DIR, 'static')
+MEDIA_ROOT = '/home/saynsite/DjangoCMSProject/media'
+STATIC_ROOT = '/home/saynsite/DjangoCMSProject/static'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'mysite', 'static'),
+    '/home/saynsite/DjangoCMSProject/static',
+    '/home/saynsite/DjangoCMSProject/media',
 )
 SITE_ID = 1
 
@@ -243,7 +244,7 @@ DATABASES = {
         'CONN_MAX_AGE': 0,
         'ENGINE': 'django.db.backends.sqlite3',
         'HOST': 'localhost',
-        'NAME': 'project.db',
+        'NAME': 'DjangoCMSProject/project.db',
         'PASSWORD': '',
         'PORT': '',
         'USER': ''

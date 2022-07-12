@@ -1,0 +1,1 @@
+djangocms_apphook_setup

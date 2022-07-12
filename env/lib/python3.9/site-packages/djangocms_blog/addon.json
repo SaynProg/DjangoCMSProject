@@ -1,0 +1,31 @@
+{
+    "package-name": "djangocms-blog",
+    "installed-apps": [
+        "filer",
+        "easy_thumbnails",
+        "aldryn_apphooks_config",
+        "parler",
+        "taggit",
+        "taggit_autosuggest",
+        "meta",
+        "djangocms_blog",
+        "sortedm2m"
+    ],
+    "settings": {
+        "META_SITE_PROTOCOL": "https",
+        "META_USE_SITES": true,
+        "META_USE_OG_PROPERTIES": true,
+        "META_USE_TWITTER_PROPERTIES": true,
+        "META_USE_SCHEMAORG_PROPERTIES": true,
+        "THUMBNAIL_PROCESSORS": [
+            "easy_thumbnails.processors.colorspace",
+            "easy_thumbnails.processors.autocrop",
+            "filer.thumbnail_processors.scale_and_crop_with_subject_location",
+            "easy_thumbnails.processors.filters"
+        ]
+    },
+    "urls": [
+        ["", "djangocms_blog.taggit_urls"]
+    ],
+    "message": "Installation completed, check documentation https://djangocms-blog.readthedocs.io/en/latest/installation.html#modify-templates for further information"
+}
