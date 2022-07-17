@@ -92,8 +92,7 @@ MEDIA_ROOT = '/home/saynsite/DjangoCMSProject/media'
 STATIC_ROOT = '/home/saynsite/DjangoCMSProject/static'
 
 STATICFILES_DIRS = (
-    '/home/saynsite/DjangoCMSProject/static',
-    '/home/saynsite/DjangoCMSProject/media',
+    os.path.join(BASE_DIR, 'mysite', 'static'),
 )
 SITE_ID = 1
 
@@ -244,7 +243,7 @@ DATABASES = {
         'CONN_MAX_AGE': 0,
         'ENGINE': 'django.db.backends.sqlite3',
         'HOST': 'localhost',
-        'NAME': 'DjangoCMSProject/project.db',
+        'NAME': '/home/saynsite/DjangoCMSProject/project.db',
         'PASSWORD': '',
         'PORT': '',
         'USER': ''
