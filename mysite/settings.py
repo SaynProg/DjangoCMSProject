@@ -26,9 +26,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'pj2m3157=2m7yh+wt#wd8ol5$!%)_u$eb#k+0i-!av4)uasr00'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['saynsite.pythonanywhere.com',]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -88,8 +88,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = '/home/saynsite/DjangoCMSProject/media'
-STATIC_ROOT = '/home/saynsite/DjangoCMSProject/static'
+MEDIA_ROOT = os.path.join(DATA_DIR, 'media')
+STATIC_ROOT = os.path.join(DATA_DIR, 'static')
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'mysite', 'static'),
@@ -181,7 +181,7 @@ INSTALLED_APPS = [
     
     # my project
     'mysite',
-    'contact',
+    'contactform',
 
     'aldryn_apphooks_config',
     'parler',
@@ -228,7 +228,7 @@ CMS_TEMPLATES = (
     ('sidebar_left.html', 'Sidebar Left'),
     ('sidebar_right.html', 'Sidebar Right'),
     ('index.html', 'Головна сторінка'),
-    # ('contact.html', 'Контакт'),
+    ('contact.html', 'Контакт'),
     ('about.html', 'Про Нас'),
 )
 
@@ -243,7 +243,7 @@ DATABASES = {
         'CONN_MAX_AGE': 0,
         'ENGINE': 'django.db.backends.sqlite3',
         'HOST': 'localhost',
-        'NAME': '/home/saynsite/DjangoCMSProject/project.db',
+        'NAME': 'project.db',
         'PASSWORD': '',
         'PORT': '',
         'USER': ''
@@ -256,7 +256,7 @@ THUMBNAIL_PROCESSORS = (
     'filer.thumbnail_processors.scale_and_crop_with_subject_location',
     'easy_thumbnails.processors.filters'
 )
-META_SITE_PROTOCOL = 'https'  # set 'http' for non ssl enabled websites
+META_SITE_PROTOCOL = 'http'  # set 'http' for non ssl enabled websites
 META_USE_SITES = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -265,6 +265,6 @@ DEFAULT_FROM_EMAIL = 'u56179410@gmail.com'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'u56179410@gmail.com'
-EMAIL_HOST_PASSWORD = 'waycsmylhubatqfy'
+EMAIL_HOST_PASSWORD = 'przcmtlafdhqjtew'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
